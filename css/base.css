@@ -19,6 +19,7 @@ body {
   line-height: 2em;
   background-color: $light-background-color;
   color: $light-font-color;
+  -webkit-transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
 }
 body:before {
@@ -36,26 +37,31 @@ body:before {
 body.dark-theme {
   background-color: $dark-background-color;
   color: $dark-font-color;
+  -webkit-transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
 }
 a {
   color: $light-global-link-color;
   text-decoration: none;
+  -webkit-transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
   cursor: pointer;
 }
 a:hover {
   color: $light-global-link-hover-color;
   text-decoration: none;
+  -webkit-transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
 }
 .dark-theme a {
   color: $dark-global-link-color;
   text-decoration: none;
+  -webkit-transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
 }
 .dark-theme a:hover {
   color: $dark-global-link-hover-color;
   text-decoration: none;
+  -webkit-transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
 }

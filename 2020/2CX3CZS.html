@@ -18,7 +18,7 @@
     <meta name="keywords" content="HTML, JavaScript, Hexo">
 
 
-<title>Test | 何俊泽的博客</title>
+<title>为什么要工作 | 何俊泽的博客</title>
 
 
 
@@ -122,11 +122,73 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Test</h1>
+            <h1 class="post-title">为什么要工作</h1>
             
                 <div class="post-meta">
                     
@@ -135,14 +197,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">三月 21, 2020&nbsp;&nbsp;18:57:41</a>
+                        Date: <a href="#">四月 27, 2020&nbsp;&nbsp;17:48:45</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/blog-show/categories/%E5%BC%80%E5%8F%91/">开发</a>
+                                <a href="/blog-show/categories/%E7%94%9F%E6%B4%BB/">生活</a>
                             
                         </span>
                     
@@ -151,7 +213,23 @@
         </header>
 
         <div class="post-content">
-            <p>测试文章</p>
+            <h3 id="什么是工作？"><a href="#什么是工作？" class="headerlink" title="什么是工作？"></a>什么是工作？</h3><hr>
+<p>我认为工作是某个事务的统称。主观上，甚至可以认为刷牙也是在工作。大部分人讨厌工作日起床刷牙去上班，其实主观上觉得工作日都是在工作。</p>
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><hr>
+<p>直接点题，为什么我要工作？灵魂拷问，我听过许多类似当，比如：</p>
+<blockquote>
+<ul>
+<li>为什么你喜欢我？</li>
+<li>为什么你不去死？</li>
+<li>为什么你不懂？</li>
+</ul>
+</blockquote>
+<p>单纯对于工作这个事务，我没找到主观原因，找到到更多到是客观原因。</p>
+<ol>
+<li>赚钱，因为生活中钱是硬通货。</li>
+<li>体现价值，因为这是社会普遍认同的观念。</li>
+<li>求知欲和自知，因为知道自己能干什么，所以才会干什么。当自己干了之后，发现自己能干的还有更多。在自己能够探索的领域，不断探索，满足求知欲。等自己什么时候对工作失去求知欲了，就会去探索其他事务，比如玩游戏、运动，在其他领域探索自己未知的潜能。</li>
+</ol>
 
         </div>
 
@@ -166,7 +244,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://bigbugaboo.github.io/blog-show/2020/1W4VM9J.html">https://bigbugaboo.github.io/blog-show/2020/1W4VM9J.html</a></span>
+                        <span><a href="https://bigbugaboo.github.io/blog-show/2020/2CX3CZS.html">https://bigbugaboo.github.io/blog-show/2020/2CX3CZS.html</a></span>
                     </p>
                 
                 
@@ -189,6 +267,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/blog-show/tags/%E6%80%9D%E8%80%83/"># 思考</a>
+                    
+                        
                 </span>
             </div>
             <div>

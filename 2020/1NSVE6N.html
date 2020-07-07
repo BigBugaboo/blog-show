@@ -18,7 +18,7 @@
     <meta name="keywords" content="HTML, JavaScript, Hexo">
 
 
-<title>为什么要工作 | 何俊泽的博客</title>
+<title>移动商城整UI优化总结 | 何俊泽的博客</title>
 
 
 
@@ -188,7 +188,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">为什么要工作</h1>
+            <h1 class="post-title">移动商城整UI优化总结</h1>
             
                 <div class="post-meta">
                     
@@ -197,14 +197,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">四月 27, 2020&nbsp;&nbsp;17:48:45</a>
+                        Date: <a href="#">六月 3, 2020&nbsp;&nbsp;11:01:53</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/blog-show/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+                                <a href="/blog-show/categories/%E5%BC%80%E5%8F%91/">开发</a>
                             
                         </span>
                     
@@ -213,23 +213,19 @@
         </header>
 
         <div class="post-content">
-            <h3 id="什么是工作？"><a href="#什么是工作？" class="headerlink" title="什么是工作？"></a>什么是工作？</h3><hr>
-<p>我认为工作是某个事务的统称。主观上，甚至可以认为刷牙也是在工作。大部分人讨厌工作日起床刷牙去上班，其实主观上觉得工作日都是在工作。</p>
-<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><hr>
-<p>直接点题，为什么我要工作？灵魂拷问，我听过许多类似当，比如：</p>
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>这个是我入职以来，第一次参与大型的团队协助项目，我们先简单了解一下背景。</p>
 <blockquote>
-<ul>
-<li>为什么你喜欢我？</li>
-<li>为什么你不去死？</li>
-<li>为什么你不懂？</li>
-</ul>
-</blockquote>
-<p>单纯对于工作这个事务，下面是我思考的主观原因。</p>
 <ol>
-<li>赚钱，因为生活中钱是硬通货。</li>
-<li>体现价值，因为这是社会普遍认同的观念。</li>
-<li>求知欲和自知，因为知道自己能干什么，所以才会干什么。当自己干了之后，发现自己能干的还有更多。在自己能够探索的领域，不断探索，满足求知欲。等自己什么时候对工作失去求知欲了，就会去探索其他事务，比如玩游戏、运动，在其他领域探索自己未知的潜能。</li>
+<li>将组件抽离到组件库</li>
+<li>整体UI更新优化</li>
+<li>优化业务逻辑代码及不合理的代码设计</li>
+<li>迭代几个需求小改动</li>
 </ol>
+</blockquote>
+<p>上述是本次项目的主要的工作，重点在 <strong>UI更新优化</strong> 和 <strong>业务逻辑代码优化</strong>。我负责业务，偶尔因为业务需求提一下pr到组件。所以我的主要工作是2、3、4点。</p>
+<h2 id="过程回顾"><a href="#过程回顾" class="headerlink" title="过程回顾"></a>过程回顾</h2><p>在重构UI的过程都比较顺利，因为有自己接触过的模块，比如登陆、注册、忘记密码等，但也有自己没接触的模块，例如首页、搜索页等。其中首页花费的时间最长，因为首页有定制化功能，所以摸透整个逻辑花了点时间，不过改动比较小，主要改动是UI的改动，大改动主要是把原来耦合的模块拆分。</p>
+<p>在弄注册页时，优化了校验，其中校验账号是否存在，需要请求接口，原来的校验方案是提交时校验，改成实时校验后，需要加一下防抖。在考虑使用节流还是防抖时，考虑到用户体验，个人觉得这里使用防抖比节流会更好，因为用户本身的行为更关注输入完后的结果，而非过程。节流偏向持续化操作的控制，防抖更偏向结果性的控制。</p>
+<p>在弄完自己熟悉的模块后，把精力投入了首页的优化，在优化的过程中，发现有前辈留下的todo，所以我非常谨慎的扫了几遍后，才对首页的代码进行优化。其中首页迭代了个小需求，我一开始打算直接优化现有组件，但是优化完发现，有很多地方不合理，最后自己全部把他们全部拆分了。</p>
 
         </div>
 
@@ -244,7 +240,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://bigbugaboo.github.io/blog-show/2020/2CX3CZS.html">https://bigbugaboo.github.io/blog-show/2020/2CX3CZS.html</a></span>
+                        <span><a href="https://bigbugaboo.github.io/blog-show/2020/1NSVE6N.html">https://bigbugaboo.github.io/blog-show/2020/1NSVE6N.html</a></span>
                     </p>
                 
                 
@@ -268,7 +264,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/blog-show/tags/%E6%80%9D%E8%80%83/"># 思考</a>
+                        <a href="/blog-show/tags/mobile/"># mobile</a>
                     
                         
                 </span>
@@ -281,10 +277,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/blog-show/2020/1NSVE6N.html">移动商城整UI优化总结</a>
+                <a class="prev" rel="prev" href="/blog-show/2020/R28ANZ.html">工作总结/实习总结</a>
             
             
-            <a class="next" rel="next" href="/blog-show/2019/1FBGYMB.html">Start</a>
+            <a class="next" rel="next" href="/blog-show/2020/2CX3CZS.html">为什么要工作</a>
             
         </section>
 

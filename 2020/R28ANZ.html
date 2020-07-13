@@ -213,39 +213,69 @@
         </header>
 
         <div class="post-content">
-            <h1 id="2019-10-2020-06-半年工作总结-实习总结"><a href="#2019-10-2020-06-半年工作总结-实习总结" class="headerlink" title="2019/10-2020/06 半年工作总结 - 实习总结"></a>2019/10-2020/06 半年工作总结 - 实习总结</h1><h2 id="2019-10"><a href="#2019-10" class="headerlink" title="2019/10"></a>2019/10</h2><p>  我是国庆后入职实习，这个月主要是跟着敏仪了解技术栈、项目的结构、运维部署的流程、测试灰度流程和参与到团队的实际开发，尽管分配的任务不是很重，但是学到了很多团队之间协助和沟通的知识。</p>
-<blockquote>
-<ol>
+            <h1 id="2019-10-2020-05-半年工作总结-实习总结"><a href="#2019-10-2020-05-半年工作总结-实习总结" class="headerlink" title="2019/10-2020/05 半年工作总结 - 实习总结"></a>2019/10-2020/05 半年工作总结 - 实习总结</h1><h2 id="2019-10"><a href="#2019-10" class="headerlink" title="2019/10"></a>2019/10</h2><h3 id="join-in-team"><a href="#join-in-team" class="headerlink" title="join in team"></a>join in team</h3><h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>  我是国庆后入职实习，这个月主要是跟着敏仪了解技术栈、项目的结构、运维部署的流程、测试灰度流程和参与到团队的实际开发，尽管分配的任务不是很重，但是学到了很多团队之间协助和沟通的知识。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ol>
 <li>团队开发流程</li>
 <li>学习理解，测试、灰度、全量流程化的必要</li>
 <li>学习部门、团队之间的沟通</li>
 </ol>
+<hr>
+<h2 id="2019-11"><a href="#2019-11" class="headerlink" title="2019/11"></a>2019/11</h2><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><blockquote>
+<p>熟悉基本的开发协同后，我开始接敏仪和雅堂分配的需求，比如帮助文档静态搜索优化，邀请有礼等。具体跟 algolia、sitemap、用户体验等有关。</p>
 </blockquote>
-<h2 id="2019-11"><a href="#2019-11" class="headerlink" title="2019/11"></a>2019/11</h2><p>  熟悉基本的协同后，我开始接敏仪和雅堂分配的需求，比如帮助文档静态搜索优化，邀请有礼等。</p>
-<p>  在优化帮助文档时，雅堂跟我过了一遍大概的框架及相关点，搜索使用的是algolia 托管式全站搜索，接入了自动化服务，就是第三方使用脚本自动化设置搜索匹配规则。当时提到需要优化的点是细粒度，当时细粒度只到文章的标题，对于帮助型文档，如果无法精确到内容级别的细粒度，搜索是毫无意义的。在接到这个任务后，我去看了 algolia ，它提供两种服务，一种是给服务器给你，你直接写规则，一种是通过自动化爬虫来生成规则。然后，我们项目是使用第二种，所以没办法直接操作数据库。然后我去 github 看了他们项目的源码，发现他们自动匹配，有个地方专门存储自动生成的规则，然后，在该文件夹里，找到了我们公司的网站，然后通过pr形式该了规则。哈哈，这里其实也是对应我们团队的其中一个点，站在巨人的肩膀，写 algolia 是个大佬，taro 的文档搜索也是用这个。</p>
-<p>  另外个需求，邀请有礼，是我第一个接手的需求，在这过程中遇到蛮多问题，比如，店铺logo跨域问题、方案选择、历史bug等。其中历史bug最为致命，我描述一下，就是商城第一次打开时，url 中传递的 hash 是不会记录的。问题关键是，邀请有礼就是要用户第一次打开商城，才传递对应的邀请值做用户绑定。如果这个问题不解决，这个需求就白做。然后，我和敏仪沟通过后，了解了商城项目的大致结构。然后我开始研究商城的代码和微信相关的文档。最终结论是，因为微信需要过白名单，标示你的网站是合法，所以第一次访问，是会过一层微信的服务，然后微信会重定向到服务器，后台再做对应的响应，这里有个知识点，重定向是无法携带hash的，所以导致 hash 无法传递给后台，所以我们把参数放在 search，后台获取search获取后，再携带回来，这样就可以把参数携带跳过微信服务那一层，完美解决了拦路虎。</p>
-<blockquote>
-<ol>
-<li>开源意识，开源真正精髓，”对于困惑，你不用再猜测“。</li>
-<li>思维，想的更广，不要停留在思维定式中，跳出来思考问题。</li>
-<li>主动推动，对应团队原则“谁难受谁推动”</li>
-</ol>
-</blockquote>
-<h2 id="2019-12-2020-2"><a href="#2019-12-2020-2" class="headerlink" title="2019/12 - 2020/2"></a>2019/12 - 2020/2</h2><p>  商品添加需求，我当时做的时候，依据需求文档，已经进入测试了。然后被告知，不符合预期。然后通过了解到，这个需求是a产品转给b产品，a开发转给b开发，然后是a产品和a开发开需求会，b产品和b开发没参加。然后我就是那个悲催的b开发，然后就是大量的修改，反反复复的修改，以至于最后我整个人都乱了。不过，好在雅堂和敏仪的协助，重新梳理了，然后推动产品之间的需求确认，完成了这个需求。当我们回看整个过程，并没有说谁没尽责，大家都做了该做的，是一个点导致的，真正开发者和产品并没有对过方案。暴露的这个问题，在后面，我们团队内部也进行了总结，确立了一个点，自己没参加过的需求会议不接。</p>
-<p>  微信登录需求，现学现卖，之前我只弄过小程序的，并未接触过H5形式的登录，在整个开发过程，通过不断的摸索，找一个合理且可行的方案，不过这种方案会导致后台部分代码不合理，为了及时上线，通过推动交流，最后还是接受了这个方案。在探索的过程中，有几个方案遇到意外情况，导致项目延期，并且在项目赶工时，没有调整好自己的心态，好在当时有王彬在旁边开导了我，感谢。</p>
-<blockquote>
-<ol>
-<li>明确需求，主动跟进。</li>
+<h3 id="文档维护-帮助文档"><a href="#文档维护-帮助文档" class="headerlink" title="文档维护-帮助文档"></a>文档维护-帮助文档</h3><h4 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h4><p>  在优化帮助文档时，雅堂跟我过了一遍大概的框架及相关点，搜索使用的是 <a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/docsearch</a> 托管式全站搜索，接入了自动化服务，就是第三方使用脚本自动化设置搜索匹配规则。当时提到需要优化的点是细粒度，当时细粒度只到文章的标题，对于帮助型文档，如果无法精确到内容级别的细粒度，搜索是毫无意义的。在接到这个任务后，我去看了 algolia ，它提供两种服务，第一种是 <a href="https://www.algolia.com/" target="_blank" rel="noopener">algolia</a> ，它提供服务器给你，你直接写规则，一种是通过自动化爬虫来生成规则。然后，我们项目是使用第二种 <a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/docsearch</a>，所以没办法直接操作数据库。然后我去 <strong>github</strong> 看了他们项目的源码，发现他们自动匹配，有个地方专门存储自动生成的规则，然后，在该文件夹里，找到了我们公司的网站，然后通过pr形式该了规则。哈哈，这里其实也是对应我们团队的其中一个点，<strong>站在巨人的肩膀</strong>。后来发现 <a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/docsearch</a> 是个网络搜索服务，同时很积极的参与开源社区，提供自己的搜索服务。很多技术文档都是使用 <a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/docsearch</a>，比如 React、Taro、typescript、yarn 等，很难避免这样的问题，如果大家在使用 <a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/docsearch</a> 的话，因为是傻瓜式接入，其原理是跑python脚本获取页面的标签信息，爬取完后，生成网站对应的规则，所以如果是没有只优化的网站，会导致菜单层级混乱、文本内容无法爬取、检索不全等问题。检索不全的问题，有可能是网站导航栏是动态获取导致的，可以通过设置 <a href="https://baike.baidu.com/item/sitemap/6241567?fr=aladdin" target="_blank" rel="noopener">sitemap</a> 解决。而 algolia/docsearch 的具体等配置规则，大家可以上 github 拉 <a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/docsearch</a> 项目中自己等网站配置，然后配置 docker 的 python 环境，然后跑自己配置，进行调整，<a href="https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration/#css-selectors" target="_blank" rel="noopener">algolia配置相关</a>，这个配置文档是 algolia 的，但是 algolia 和 algolia/docsearch 是同一个，只是适用于不同的场景。</p>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><p>开源意识，开源真正精髓，”对于困惑，你不用再猜测“。</p>
+</li>
+<li><p>思维，想的更广，不要停留在思维定式中，跳出来思考问题。</p>
+<h4 id="tip"><a href="#tip" class="headerlink" title="tip"></a>tip</h4></li>
+<li><p><a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/search</a> 和 algolia 有区别，<a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/search</a> 更容易接入。</p>
+</li>
+</ul>
+<hr>
+<h3 id="营销类需求-邀请有礼"><a href="#营销类需求-邀请有礼" class="headerlink" title="营销类需求-邀请有礼"></a>营销类需求-邀请有礼</h3><h4 id="内容-2"><a href="#内容-2" class="headerlink" title="内容"></a>内容</h4><p>  另外个需求，邀请有礼，是我第一个接手的需求，在这过程中遇到蛮多问题，比如，店铺logo跨域问题、方案选择、历史bug等。其中历史bug最为致命，我描述一下，就是商城第一次打开时，url 中传递的 hash 是不会记录的。问题关键是，邀请有礼就是要用户第一次打开商城，才传递对应的邀请值做用户绑定。如果这个问题不解决，这个需求就白做。然后，我和敏仪沟通过后，了解了商城项目的大致结构。然后我开始研究商城的代码和微信相关的文档。最终结论是，因为微信需要过白名单，标示你的网站是合法，所以第一次访问，是会过一层微信的服务，然后微信会重定向到服务器，后台再做对应的响应，这里有个知识点，重定向是无法携带hash的，所以导致 hash 无法传递给后台，所以我们把参数放在 search，后台获取search获取后，再携带回来，这样就可以把参数携带跳过微信服务那一层，完美解决了拦路虎。</p>
+<h4 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><p>难受了就推动，对应我们团队原则 “<strong>谁难受谁推动</strong>”，能带来非常好的驱动力，正向回馈。</p>
+</li>
+<li><p>积累问题关键点，逐步思考解决方案。</p>
+<h4 id="tip-1"><a href="#tip-1" class="headerlink" title="tip"></a>tip</h4></li>
+<li><p>#是用来指导浏览器动作的，对服务器端完全无用，所以请求会过滤hash，当项目采用hash路由时，需要特别注意，因为开发者往往使用get方式传递参数，在接入第三方服务，并且第三方存在重定向当情况下，是个极大当隐患。比如请求 <a href="https://www.yuque.com/iyum9i#search=get" target="_blank" rel="noopener">https://www.yuque.com/iyum9i#search=get</a> 会变成 <a href="https://www.yuque.com/iyum9i，导致参数丢失。" target="_blank" rel="noopener">https://www.yuque.com/iyum9i，导致参数丢失。</a></p>
+</li>
+</ul>
+<hr>
+<h2 id="2019-12-2020-02"><a href="#2019-12-2020-02" class="headerlink" title="2019/12 - 2020/02"></a>2019/12 - 2020/02</h2><h3 id="交互优化-商品添加"><a href="#交互优化-商品添加" class="headerlink" title="交互优化-商品添加"></a>交互优化-商品添加</h3><h4 id="内容-3"><a href="#内容-3" class="headerlink" title="内容"></a>内容</h4><p>  商品添加需求，我当时做的时候，依据需求文档，已经进入测试了。然后被告知，不符合预期。然后通过了解到，这个需求是a产品转给b产品，a开发转给b开发，然后是a产品和a开发开需求会，b产品和b开发没参加。然后我就是那个悲催的b开发，然后就是大量的修改，反反复复的修改，以至于最后我整个人都乱了。不过，好在雅堂和敏仪的协助，重新梳理了，然后推动产品之间的需求确认，完成了这个需求。当我们回看整个过程，并没有说谁没尽责，大家都做了该做的，是一个点导致的，真正开发者和产品并没有对过方案。暴露的这个问题，在后面，我们团队内部也进行了总结，确立了一个点，<strong>自己没参加过的需求会议不接</strong></p>
+<h4 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>主动跟进需求相关信息，自己也要非常明确需求。</li>
+<li>自己没参加过的需求会议不接，需求会议是基本前提。</li>
+</ul>
+<hr>
+<h3 id="微信登录-H5"><a href="#微信登录-H5" class="headerlink" title="微信登录-H5"></a>微信登录-H5</h3><h4 id="内容-4"><a href="#内容-4" class="headerlink" title="内容"></a>内容</h4><p>  微信登录需求，现学现卖，之前我只弄过小程序的，并未接触过H5形式的登录，在整个开发过程，通过不断的摸索，找一个合理且可行的方案，不过这种方案会导致后台部分代码不合理，为了及时上线，通过推动交流，最后还是接受了这个方案。在探索的过程中，有几个方案遇到意外情况，导致项目延期，并且在项目赶工时，没有调整好自己的心态，好在当时有王彬在旁边开导了我，感谢。</p>
+<h4 id="总结-4"><a href="#总结-4" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>急躁时，调整心态，否则徒劳无功。</li>
 <li>通过利用资源，解决问题。</li>
-<li>主动推动，探讨难点，以需求完成为第一目标。</li>
-</ol>
-</blockquote>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过总结可以让人很好的成长，挖掘内在的问题，从中反思，在以后的工作中，避免发送类似的错误，还有找到有利于的点。列举了几个半年内，比较有体会的项目，从中我也有几点需要提示。</p>
+<li>探讨难点，研究丢多种方案，尝试攻克问题，以需求完成为第一目标。</li>
+</ul>
+<hr>
+<h2 id="2020-02-2020-05"><a href="#2020-02-2020-05" class="headerlink" title="2020/02 - 2020/05"></a>2020/02 - 2020/05</h2><h3 id="Bshop新ui"><a href="#Bshop新ui" class="headerlink" title="Bshop新ui"></a>Bshop新ui</h3><h4 id="内容-5"><a href="#内容-5" class="headerlink" title="内容"></a>内容</h4><p>bshop是个移动商城项目，需要开发规范的移动ui基础库和统一ui设计风格。我主要是负责业务方面，但是在这个过程中，我也是个组件库的参与者。在一个项目开发过程中，我更喜欢主动，而非被动。当前业务的改动对组件库有需求时，我会提出来，并且尝试性参与到组件到扩展。在这种主动参与的习惯下，我自己能感受到成长。同时，也暴露了自己在组件开发设计方面的不足，我也会更主动的参与学习。在重构业务方面，我是有追求的，发现业务设计的不合理，也会积极去和模块的负责人沟通，确认是否真的不合理，然后探讨。有时，觉得这样做，有点职责划分不明确的感觉。不知道各位有什么看法，可以评论分享一下。</p>
+<h4 id="总结-5"><a href="#总结-5" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>主动是没有坏处的，<strong>把自己看成一款产品，人也需要不断迭代。</strong></li>
+<li><strong>做一个有追求的人</strong>，产出有价值的东西。</li>
+</ul>
+<hr>
+<h2 id="整体总结"><a href="#整体总结" class="headerlink" title="整体总结"></a>整体总结</h2><p>  通过总结可以让人很好的成长，挖掘内在的问题，从中反思，在以后的工作中，避免发生类似的错误。列举了几个半年内，比较有体会的项目，从中提炼几个点。</p>
+<ul>
+<li>主动</li>
+<li>有追求</li>
+<li>深究的意识</li>
+<li>明确目标</li>
+<li>积极闭环，与人沟通</li>
+</ul>
 <p>反思</p>
 <ol>
 <li>在面对比较复杂、不明确的需求的情况下，太容易陷入自我封闭思考。</li>
 <li>在项目赶工的情况下，容易焦虑，代码质量会非常低。</li>
 <li>在业务方面，还是需要锻炼。</li>
+<li>虽然尽最大努力的追求代码质量，但是有时还是会犯些低级的错误。</li>
 </ol>
 <p>正向</p>
 <ol>
@@ -254,7 +284,7 @@
 </ol>
 <h2 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h2><ol>
 <li>提升自己的业务能力</li>
-<li>巩固自己的计算机基础</li>
+<li>巩固计算机相关的基础</li>
 <li>锻炼自己的思考广度和深度</li>
 <li>看书</li>
 <li>写各种 demo 练手</li>
@@ -301,6 +331,10 @@
                     
                     
                         <a href="/blog-show/tags/%E6%80%BB%E7%BB%93%E3%80%81%E5%AE%9E%E4%B9%A0%E3%80%81%E5%B7%A5%E4%BD%9C/"># 总结、实习、工作</a>
+                    
+                        <a href="/blog-show/tags/React/"># React</a>
+                    
+                        <a href="/blog-show/tags/css/"># css</a>
                     
                         
                 </span>

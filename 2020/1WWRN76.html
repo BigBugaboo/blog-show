@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="何俊泽">
+
+
+    <meta name="subtitle" content="何俊泽满是BUG的博客">
+
+
+
+    <meta name="keywords" content="HTML, JavaScript, Hexo">
+
+
+<title>typescript 工具泛型 | 何俊泽的博客</title>
+
+
+
+    <link rel="icon" href="/blog-show/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/blog-show/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/blog-show/js/script.js"></script>
+    
+    <script src="/blog-show/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/blog-show/">何俊泽的博客</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/blog-show/archives">文章</a>
+                
+                    <a class="menu-item" href="/blog-show/life">生活</a>
+                
+                    <a class="menu-item" href="/blog-show/idea">创意</a>
+                
+                    <a class="menu-item" href="/blog-show/category">分类</a>
+                
+                    <a class="menu-item" href="/blog-show/tags">标签检索</a>
+                
+                    <a class="menu-item" href="/blog-show/about">关于我</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/blog-show/">何俊泽的博客</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/blog-show/archives">文章</a>
+                
+                    <a class="menu-item" href="/blog-show/life">生活</a>
+                
+                    <a class="menu-item" href="/blog-show/idea">创意</a>
+                
+                    <a class="menu-item" href="/blog-show/category">分类</a>
+                
+                    <a class="menu-item" href="/blog-show/tags">标签检索</a>
+                
+                    <a class="menu-item" href="/blog-show/about">关于我</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">typescript 工具泛型</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">何俊泽</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">八月 31, 2020&nbsp;&nbsp;22:10:30</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/blog-show/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><strong>提要</strong></p>
+<blockquote>
+<ol>
+<li>什么是工具泛型？</li>
+<li>学习工具泛型前置条件？</li>
+<li>学习官方提供的工具泛型的实现方式</li>
+<li>如何写一个工具泛型？</li>
+<li>加深回顾</li>
+<li>总结</li>
+<li>题目</li>
+</ol>
+</blockquote>
+<p><strong>背景</strong><br>一直没有深入学习更多内容，后来加入观麦前端团队，有辛认识到有着 <code>TS</code> 丰富经验的前辈，开始意识到自己在 <code>TS</code> 方面还有很多盲区，所以选择跳出来，往更深的内容学习。现在与大家分享工具泛型相关的学习，有什么不足的地方，希望能和大家共同交流。如果不想看的，可以直接请官网学习<br><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/utility-types.html">官网传送门</a></p>
+<h2 id="什么是工具泛型？"><a href="#什么是工具泛型？" class="headerlink" title="什么是工具泛型？"></a>什么是工具泛型？</h2><p>处理一些类型相关的工具泛型，有些人也叫它<code>工具类型</code>，因为它具有一定的工具性质，就是类似纯函数的概念。</p>
+<h2 id="学习工具泛型前置条件？"><a href="#学习工具泛型前置条件？" class="headerlink" title="学习工具泛型前置条件？"></a>学习工具泛型前置条件？</h2><h3 id="type-类型别名"><a href="#type-类型别名" class="headerlink" title="type 类型别名"></a>type 类型别名</h3><blockquote>
+<p>顾名思义，你可以理解成，给类型取个名字</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Person = &#123;</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line">  age: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> me: Person = &#123;</span><br><span class="line">  name: <span class="string">&#x27;front-end developer&#x27;</span>,</span><br><span class="line">  age: <span class="number">66</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同时我们也可以用来声明工具泛型</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> TPickKey&lt;T&gt; = keyof T</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line">  age: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myKey: TPickKey&lt;Person&gt; = <span class="string">&#x27;name&#x27;</span></span><br><span class="line"><span class="comment">// TPickKey&lt;Person&gt; = &#x27;name&#x27; | &#x27;age&#x27;</span></span><br><span class="line"><span class="comment">// 这个泛型主要获取传入类型的 key，并放回key的联和类型</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="条件类型"><a href="#条件类型" class="headerlink" title="条件类型"></a>条件类型</h3><p>在<code>TS</code> 2.8 加入了条件类型,逻辑是三元运算符，所以比较好理解</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T <span class="keyword">extends</span> U ? X : Y</span><br></pre></td></tr></table></figure>
+
+<h3 id="infer"><a href="#infer" class="headerlink" title="infer"></a>infer</h3><p>声明一个变量，并对其进行使用,可以看后面的<code>ReturnType</code>进行理解</p>
+<h3 id="extends-继承"><a href="#extends-继承" class="headerlink" title="extends 继承"></a>extends 继承</h3><p>下面的一些内容会经常用<code>extends</code>关键字,<code>extends</code>类似数学集合里的子集概念,可以看一下这篇文章，会对<code>TS</code>有进一步对理解。<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/38081852">深入Typescript 的类型系统</a></p>
+<h3 id="keyof"><a href="#keyof" class="headerlink" title="keyof"></a>keyof</h3><blockquote>
+<p>keyof 操作符是在 TypeScript 2.1 版本引入的，操作符可以用于获取某种类型的所有键，其返回类型是联合类型。</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Keys = keyof Person <span class="comment">// Keys = &quot;name&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><blockquote>
+<p>typeof 操作符可以用来获取一个变量或对象的类型</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> me: Person = &#123;</span><br><span class="line">  name: <span class="string">&#x27;bugaboo&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> MyType = <span class="keyword">typeof</span> me <span class="comment">// MyType = Person</span></span><br><span class="line"><span class="keyword">type</span> MyNameType = <span class="keyword">typeof</span> me.name <span class="comment">// MyNameType = string</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="学习官方提供的工具泛型的实现方式"><a href="#学习官方提供的工具泛型的实现方式" class="headerlink" title="学习官方提供的工具泛型的实现方式"></a>学习官方提供的工具泛型的实现方式</h2><p>在编写复杂的工具泛型前，我们必须要掌握基础工具及语法，才能更好的理解和实现。</p>
+<p><em>请先理解上一节的内容</em></p>
+<h3 id="首先我们来认识一些常用的命名规则，这里参考-java-的泛型命名规范"><a href="#首先我们来认识一些常用的命名规则，这里参考-java-的泛型命名规范" class="headerlink" title="首先我们来认识一些常用的命名规则，这里参考 java 的泛型命名规范"></a>首先我们来认识一些常用的命名规则，这里参考 <code>java</code> 的泛型命名规范</h3><ul>
+<li>E - Element (used extensively by the Java Collections Framename)</li>
+<li>K - Key</li>
+<li>N - Number</li>
+<li>T - Type</li>
+<li>V - Value</li>
+<li>S, U, V etc. - 2nd, 3rd, 4th types</li>
+<li>R - Result</li>
+<li>A - Accumulator</li>
+</ul>
+<h3 id="Partial"><a href="#Partial" class="headerlink" title="Partial"></a>Partial<T></h3><blockquote>
+<p>把传入的类型，变为可选的</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line">  age: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> you: Person = &#123;</span><br><span class="line">  name: <span class="string">&#x27;yyds&#x27;</span>,</span><br><span class="line">  age: <span class="number">18</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> me: Partial&lt;Person&gt; = &#123;</span><br><span class="line">  name: <span class="string">&#x27;bugaboo&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//  typeof me = &#123;</span></span><br><span class="line"><span class="comment">//   name?: string</span></span><br><span class="line"><span class="comment">//   age?: number</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+<p>当我在认识一个未知的东西时，我需要对它尽可能的全面了解，那么它的遍历会很深吗？</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> HobbyType &#123;</span><br><span class="line">  title: <span class="built_in">string</span></span><br><span class="line">  desc: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line">  age: <span class="built_in">number</span></span><br><span class="line">  hobby: HobbyType[]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> you: Person = &#123;</span><br><span class="line">  name: <span class="string">&#x27;yyds&#x27;</span>,</span><br><span class="line">  age: <span class="number">18</span>,</span><br><span class="line">  hobby: [&#123; title: <span class="string">&#x27;play game&#x27;</span>, desc: <span class="string">&#x27;many games&#x27;</span> &#125;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> me: Partial&lt;Person&gt; = &#123;</span><br><span class="line">  name: <span class="string">&#x27;bugaboo&#x27;</span>,</span><br><span class="line">  hobby: [&#123;&#125;] <span class="comment">// 类型“&#123;&#125;”缺少类型“HobbyType”中的以下属性: title, descts(2739)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> MyPartial&lt;T&gt; = &#123;</span><br><span class="line">  [K <span class="keyword">in</span> keyof T]?: T[K]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> MyType = MyPartial&lt;&#123;</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line">  age: <span class="built_in">number</span></span><br><span class="line">&#125;&gt;</span><br></pre></td></tr></table></figure>
+<p>解析</p>
+<ol>
+<li>(<code>type MyPartial&lt;T&gt;</code>) — 首先，我们声明个工具泛型</li>
+<li>(<code>K in keyof T</code>，这里<code>K</code>代表着<code>T</code>类型中的<code>key</code>) — 遍历 <code>T</code></li>
+<li>(<code>T[K]</code>) — 获取对应 <code>key</code> 的类型</li>
+<li>(<code>?:</code>) — 设置成可选</li>
+</ol>
+<h3 id="Readonly"><a href="#Readonly" class="headerlink" title="Readonly"></a>Readonly<T></h3><blockquote>
+<p>把传入的类型变为只读状态</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> me: Readonly&lt;Person&gt; = &#123;</span><br><span class="line">  name: <span class="string">&#x27;bugaboo&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">me.name = <span class="string">&#x27;yyds&#x27;</span> <span class="comment">// 无法分配到 &quot;name&quot; ，因为它是只读属性。ts(2540)</span></span><br></pre></td></tr></table></figure>
+
+<p>实现</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> MyReadonly&lt;T&gt; = &#123;</span><br><span class="line">  <span class="keyword">readonly</span> [K <span class="keyword">in</span> keyof T]: T[K]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> MyType = MyReadonly&lt;&#123;</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line">&#125;&gt;</span><br></pre></td></tr></table></figure>
+<p>解析</p>
+<ol>
+<li>(<code>type MyReadonly&lt;T&gt;</code>) — 首先，我们声明个工具泛型</li>
+<li>(<code>K in keyof T</code>，这里<code>K</code>代表着<code>T</code>类型中的<code>key</code>) — 遍历 <code>T</code></li>
+<li>(<code>T[K]</code>) — 获取对应 <code>key</code> 的类型</li>
+<li>(<code>readonly</code>) — 设置成只读</li>
+</ol>
+<h3 id="Record-lt-K-T-gt"><a href="#Record-lt-K-T-gt" class="headerlink" title="Record&lt;K, T&gt;"></a>Record&lt;K, T&gt;</h3><blockquote>
+<p>将类型应用在联合类型上</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Peoples = Record&lt;<span class="string">&#x27;汉族&#x27;</span> | <span class="string">&#x27;少数民族&#x27;</span>, Person&gt;</span><br><span class="line"><span class="comment">// type Peoples = &#123;</span></span><br><span class="line"><span class="comment">//   汉族: Person</span></span><br><span class="line"><span class="comment">//   少数民族: Person</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>实现。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> MyRecord&lt;K <span class="keyword">extends</span> keyof <span class="built_in">any</span>, T&gt; = &#123;</span><br><span class="line">  [S <span class="keyword">in</span> K]: T</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> MyType = MyRecord&lt;<span class="string">&#x27;汉族&#x27;</span> | <span class="string">&#x27;少数名族&#x27;</span>, &#123; name: <span class="string">&#x27;&#x27;</span> &#125;&gt;</span><br></pre></td></tr></table></figure>
+<p>解析</p>
+<ol>
+<li>(<code>type MyRecord</code>) — 首先，我们声明个工具泛型</li>
+<li>(<code>&lt;K extends keyof any, T&gt;</code>) — 传入两个参</li>
+<li>(<code>K extends keyof any</code>) — <code>K</code> 继承 <code>any</code>,就是随便，爱传啥传啥，看上面我例子，我都传中文了。</li>
+<li>(<code>S in K</code>) — 遍历 <code>K</code></li>
+</ol>
+<h3 id="Pick-lt-T-S-gt"><a href="#Pick-lt-T-S-gt" class="headerlink" title="Pick&lt;T, S&gt;"></a>Pick&lt;T, S&gt;</h3><blockquote>
+<p>在 T 中，过滤掉非 S 的类型</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line">  age: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> MyType = Pick&lt;Person, <span class="string">&#x27;name&#x27;</span>&gt;</span><br><span class="line"><span class="comment">// type MyType = &#123;</span></span><br><span class="line"><span class="comment">//   name: string</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>实现</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> MyPick&lt;T, S <span class="keyword">extends</span> keyof T&gt; = &#123;</span><br><span class="line">  [K <span class="keyword">in</span> S]: T[K]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> MyType = MyPick&lt;Person, <span class="string">&#x27;name&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>解析</p>
+<ol>
+<li>(<code>type MyPick</code>) — 首先，我们声明个工具泛型</li>
+<li>(<code>&lt;T, S extends keyof T&gt;</code>) — 传入两个参</li>
+<li>(<code>S extends keyof T</code>) — 之前聊到 <code>keyof</code> 是获取联合类型,所以<code>S</code>是继承 <code>T</code> 的 <code>key</code> 值组成的联合类型。</li>
+<li>(<code>K in S</code>) — 遍历 <code>S</code></li>
+<li>(<code>T[K]</code>) — 获取<code>T</code>中对应的类型</li>
+</ol>
+<h3 id="Exclude-lt-T-S-gt"><a href="#Exclude-lt-T-S-gt" class="headerlink" title="Exclude&lt;T, S&gt;"></a>Exclude&lt;T, S&gt;</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> T = Exclude&lt;<span class="number">1</span> | <span class="number">2</span>, <span class="number">2</span> | <span class="number">3</span>&gt;</span><br><span class="line"><span class="comment">// type T = 1</span></span><br></pre></td></tr></table></figure>
+
+<p>实现</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> MyExclude&lt;T, S&gt; = T <span class="keyword">extends</span> S ? <span class="built_in">never</span> : T</span><br></pre></td></tr></table></figure>
+
+<p>解析<br>利用条件类型，判断<code>T</code>是否属于<code>S</code>的子集，然后返回<code>never</code>或<code>T</code><br>对于联合类型会自动分发条件</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> T = Exclude&lt;<span class="number">1</span> | <span class="number">2</span>, <span class="number">2</span> | <span class="number">3</span>&gt;</span><br><span class="line">(<span class="number">1</span> <span class="keyword">extends</span> <span class="number">2</span> | <span class="number">3</span> ?  : <span class="number">2</span> | <span class="number">3</span>) | (<span class="number">2</span> <span class="keyword">extends</span> <span class="number">2</span> | <span class="number">3</span> ? <span class="built_in">never</span> : <span class="number">2</span> | <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>所以在传入联合类型时，会返回到两个类型集合的补集</p>
+<h3 id="Omit-lt-T-K-gt"><a href="#Omit-lt-T-K-gt" class="headerlink" title="Omit&lt;T, K&gt;"></a>Omit&lt;T, K&gt;</h3><p>在<code>T</code>中删除对应的<code>K</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line">  age: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Me = Omit&lt;Person, <span class="string">&#x27;name&#x27;</span>&gt;</span><br><span class="line"><span class="comment">// type Me = &#123; age: number &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>实现</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> MyOmit&lt;T, K <span class="keyword">extends</span> keyof T&gt; = Pick&lt;T, Exclude&lt;keyof T, K&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>解析<br>利用上面的 <code>Pick</code> 和 <code>Exclude</code>进行组合</p>
+<ol>
+<li>先找出补集的<code>keys</code></li>
+<li>然后从类型集合里，挑它出来。</li>
+</ol>
+<h3 id="ReturnType"><a href="#ReturnType" class="headerlink" title="ReturnType"></a>ReturnType<T></h3><p>获取函数返回值的类型</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a: <span class="built_in">string</span></span>): <span class="title">Array</span>&lt;<span class="title">string</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [a]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> FooReturnType = ReturnType&lt;<span class="keyword">typeof</span> foo&gt;</span><br><span class="line"><span class="comment">// type FooReturnType = string[]</span></span><br></pre></td></tr></table></figure>
+
+<p>实现</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> MyReturnType&lt;T&gt; = T <span class="keyword">extends</span> (...arg: <span class="built_in">any</span>[]) =&gt; infer R ? R : <span class="built_in">any</span></span><br></pre></td></tr></table></figure>
+
+<p>解析<br>利用<code>infer</code>代指函数的返回类型，然后通过 extends 判断是否是函数类型，再返回对应的<code>infer</code>代指的类型。</p>
+<h2 id="加深回顾"><a href="#加深回顾" class="headerlink" title="加深回顾"></a>加深回顾</h2><p>其实还没写全，我只把几个比较有特点的工具写了。剩下的，不过是基于类似的实现，稍微改动来一下。我列出来，大家可以尝试一下，自己实现。</p>
+<ol>
+<li><p>Required - 把所有属性变为必选</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// tip: 跟 Partial 有关</span></span><br><span class="line"><span class="keyword">type</span> MyRequired&lt;T&gt; =  <span class="comment">// 请自行脑补</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> My = MyRequired&lt;&#123; name?: <span class="built_in">string</span>, age: <span class="built_in">number</span> &#125;&gt;</span><br><span class="line"><span class="comment">// type My = &#123; name: string &#125;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Extract - 取出两个类型集合的交集</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// tip: 跟 Exclude 有关</span></span><br><span class="line"><span class="keyword">type</span> MyExtract&lt;T, K&gt; =  <span class="comment">// 自行脑补</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> My = MyExtract&lt;<span class="number">1</span> | <span class="number">2</span>, <span class="number">2</span>&gt;</span><br><span class="line"><span class="comment">// type My = 2</span></span><br><span class="line"><span class="string">``</span><span class="string">``</span></span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> NonNullable - 去除<span class="literal">null</span>和<span class="literal">undefined</span>类型</span><br><span class="line"><span class="string">``</span><span class="string">`typescript</span></span><br><span class="line"><span class="string">// tip: 利用条件类型的联合类型自动分发特点</span></span><br><span class="line"><span class="string">type MyNonNullable =  // 自行脑补</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">type My = MyNonNullable&lt;string | null | undefined&gt;</span></span><br><span class="line"><span class="string">// type My = string</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Parameters - 获取函数的行参结构类型</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// tip: 跟 ReturnType 有关</span></span><br><span class="line"><span class="keyword">type</span> MyParameters&lt;T&gt; = &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> My = MyParameters&lt;<span class="function">(<span class="params">arg: &#123; name: <span class="built_in">string</span> &#125;</span>) =&gt;</span> <span class="built_in">string</span>&gt;</span><br><span class="line"><span class="comment">// type My = [arg: &#123;</span></span><br><span class="line"><span class="comment">//     name: string;</span></span><br><span class="line"><span class="comment">// &#125;]</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>还有一些不怎么常用的工具，可以在官网查看学习<a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/utility-types.html">官网传送门</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>网上有很多相关的文章，大多都是源码结合解析，我也是如此。不过，按照我的学习路径，先总结了基本前置知识，比如<code>infer</code>、<code>条件判断</code>等，通过递进式的方式学习掌握。我没写全，因为我希望，通过我文章，总有点收获吧，可以自己把剩下的拿来练习。可能大家一开始会比较抵触，尤其是应用到实际中时，会比较考验解构的能力。</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>前不久，有个前同事写了个面经，其中他提到有关TS的工具函数方面的笔试题，我改写一下题目，跟大家分享一下。</p>
+<h3 id="题目一：GetOnlyStringProps-获取T中所有字符串的工具函数，其中T是个对象类型"><a href="#题目一：GetOnlyStringProps-获取T中所有字符串的工具函数，其中T是个对象类型" class="headerlink" title="题目一：GetOnlyStringProps 获取T中所有字符串的工具函数，其中T是个对象类型"></a>题目一：GetOnlyStringProps<T> 获取T中所有字符串的工具函数，其中T是个对象类型</h3>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>何俊泽</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://bigbugaboo.github.io/blog-show/2020/1WWRN76.html">https://bigbugaboo.github.io/blog-show/2020/1WWRN76.html</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/blog-show/tags/typescript/"># typescript</a>
+                    
+                        <a href="/blog-show/tags/Html/"># Html</a>
+                    
+                        <a href="/blog-show/tags/HTML/"># HTML</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/blog-show/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/blog-show/2020/3PCV2D6.html">对 typescript 对看法</a>
+            
+            
+            <a class="next" rel="next" href="/blog-show/2020/R28ANZ.html">工作总结/实习总结</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 何俊泽 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

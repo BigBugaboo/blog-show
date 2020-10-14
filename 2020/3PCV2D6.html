@@ -16,7 +16,7 @@
     <meta name="keywords" content="HTML, JavaScript, Hexo">
 
 
-<title>为什么要工作 | 何俊泽的博客</title>
+<title>对 typescript 对看法 | 何俊泽的博客</title>
 
 
 
@@ -120,73 +120,11 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">为什么要工作</h1>
+            <h1 class="post-title">对 typescript 对看法</h1>
             
                 <div class="post-meta">
                     
@@ -195,14 +133,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">四月 27, 2020&nbsp;&nbsp;17:48:45</a>
+                        Date: <a href="#">十月 13, 2020&nbsp;&nbsp;20:24:21</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/blog-show/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+                                <a href="/blog-show/categories/%E6%80%BB%E7%BB%93/">总结</a>
                             
                         </span>
                     
@@ -211,23 +149,7 @@
         </header>
 
         <div class="post-content">
-            <h3 id="什么是工作？"><a href="#什么是工作？" class="headerlink" title="什么是工作？"></a>什么是工作？</h3><hr>
-<p>我认为工作是某个事务的统称。主观上，甚至可以认为刷牙也是在工作。大部分人讨厌工作日起床刷牙去上班，其实主观上觉得工作日都是在工作。</p>
-<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><hr>
-<p>直接点题，为什么我要工作？灵魂拷问，我听过许多类似当，比如：</p>
-<blockquote>
-<ul>
-<li>为什么你喜欢我？</li>
-<li>为什么你不去死？</li>
-<li>为什么你不懂？</li>
-</ul>
-</blockquote>
-<p>单纯对于工作这个事务，下面是我思考的主观原因。</p>
-<ol>
-<li>赚钱，因为生活中钱是硬通货。</li>
-<li>体现价值，因为这是社会普遍认同的观念。</li>
-<li>求知欲和自知，因为知道自己能干什么，所以才会干什么。当自己干了之后，发现自己能干的还有更多。在自己能够探索的领域，不断探索，满足求知欲。等自己什么时候对工作失去求知欲了，就会去探索其他事务，比如玩游戏、运动，在其他领域探索自己未知的潜能。</li>
-</ol>
+            <p>因为语言框架的发展都是在改进前人框架的缺点，从 jquery 到 react、vue。个人认为，TS属于下个阶段的前端主要语言(狗头保命)。因为 js 缺少静态类型检测，在开发工程中是非常难受的，虽然我们也可以利用一些额外的支持来试图填补这一块缺陷，比如 JSDoc，但是面对复杂的数据结构，显的力不从心。其实我们前端大部分精力是在构建数据和视图的方面的逻辑，随着在react和vue的js框架加持下，我们构建数据的逻辑比重也越来越大。静态类型检测在数据构建方面，起了很大的作用，但是 js 不支持，所以 typescript 就是为了解决这一痛点而诞生的。<br>在我学习的过程中，了解到，在ts的世界，类是“一等公民”，发现了它更偏向与 OOP ，而非函数式编程。<br>typescript 其实在全新的项目中使用，会更舒服些，对比重构，没有那么多数据结构的历史包袱。虽然我没实际参与到新架构到开发中，但是我喜欢它，所以我也一直在学习它，虽然我菜，但是我爱。<br>typescript 写的好，不用太大的学习成本就可以入门，但是随着项目的复杂度上升，就需要学习更多的高级语法，比如断言、重载、泛型等。</p>
 
         </div>
 
@@ -242,7 +164,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://bigbugaboo.github.io/blog-show/2020/2CX3CZS.html">https://bigbugaboo.github.io/blog-show/2020/2CX3CZS.html</a></span>
+                        <span><a href="https://bigbugaboo.github.io/blog-show/2020/3PCV2D6.html">https://bigbugaboo.github.io/blog-show/2020/3PCV2D6.html</a></span>
                     </p>
                 
                 
@@ -266,7 +188,11 @@
                 <span class="tag">
                     
                     
-                        <a href="/blog-show/tags/%E6%80%9D%E8%80%83/"># 思考</a>
+                        <a href="/blog-show/tags/typescript%E3%80%81%E7%9C%8B%E6%B3%95/"># typescript、看法</a>
+                    
+                        <a href="/blog-show/tags/React/"># React</a>
+                    
+                        <a href="/blog-show/tags/Vue/"># Vue</a>
                     
                         
                 </span>
@@ -279,8 +205,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/blog-show/2020/1NSVE6N.html">移动商城整UI优化总结</a>
+                <a class="prev" rel="prev" href="/blog-show/2020/232CQM1.html">初-中级问题</a>
             
+            
+            <a class="next" rel="next" href="/blog-show/2020/1WWRN76.html">typescript 工具泛型</a>
             
         </section>
 

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="何俊泽">
+
+
+    <meta name="subtitle" content="何俊泽满是BUG的博客">
+
+
+
+    <meta name="keywords" content="HTML, JavaScript, Hexo">
+
+
+<title>test | 何俊泽的博客</title>
+
+
+
+    <link rel="icon" href="/blog-show/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/blog-show/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/blog-show/js/script.js"></script>
+    
+    <script src="/blog-show/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/blog-show/">何俊泽的博客</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/blog-show/archives">文章</a>
+                
+                    <a class="menu-item" href="/blog-show/life">生活</a>
+                
+                    <a class="menu-item" href="/blog-show/idea">创意</a>
+                
+                    <a class="menu-item" href="/blog-show/category">分类</a>
+                
+                    <a class="menu-item" href="/blog-show/tags">标签检索</a>
+                
+                    <a class="menu-item" href="/blog-show/about">关于我</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/blog-show/">何俊泽的博客</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/blog-show/archives">文章</a>
+                
+                    <a class="menu-item" href="/blog-show/life">生活</a>
+                
+                    <a class="menu-item" href="/blog-show/idea">创意</a>
+                
+                    <a class="menu-item" href="/blog-show/category">分类</a>
+                
+                    <a class="menu-item" href="/blog-show/tags">标签检索</a>
+                
+                    <a class="menu-item" href="/blog-show/about">关于我</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    <article class="post-wrap page">
+        
+        <h2 class="post-title">test</h2>
+        
+        <section class="post-content">
+            <h2 id="什么是泛型？"><a href="#什么是泛型？" class="headerlink" title="什么是泛型？"></a>什么是泛型？</h2><blockquote>
+<p>喜欢更多细节和原理的朋友，可以前往官网，阅读文档。<a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/generics.html">官网传送门</a>  <a target="_blank" rel="noopener" href="https://www.tslang.cn/docs/handbook/generics.html">中文版传送门</a></p>
+</blockquote>
+<hr>
+<p>如果是科班出身，对编译型语言有一定了解的话，可以看看这句话，就能初步理解了个大概。<br><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%B3%9B%E5%9E%8B/4475207?fr=aladdin">泛型是程序设计语言的一种特性。允许程序员在强类型程序设计语言中编写代码时定义一些可变部分，那些部分在使用前必须作出指明。</a><strong>这里提及的可变部分必须作出声明，typescript 可以自动推断类型，所以声明不是必须的。</strong></p>
+<p>然后，我们用通俗一点的语言，来进一步了解 typescript 的泛型，举个例子：<br>我是一个机器人，专门负责把我拿到的钱，变成硬币。我没加泛型之前，我只收漂亮国的钱。后来，我免费了，加入了泛型，可以处理各种不同国家的钱，再返回对应国家的硬币。你可以告诉我，你给我什么钱，你也可以不告诉我，我自己判断。</p>
+<p>就从上面上面例子中，其实可以发现，在没加入泛型之前，为了低容错，会声明某些固定类型，比如，只转漂亮国的钱。当加入泛型后，我们可以让函数变为<strong>纯函数</strong>，依赖参数，用<strong>泛型变量</strong>来定义相关参数的类型，实现类似动态类型的概念，做出行为一致结果,<strong>拿什么钱，转什么钱</strong>。所以泛型更考验开发者的能力，因为在编写代码时，要保证其在定义的泛型场景下，能通过。当然，函数虽然可以转很多国家的钱，可能它不想转冥币，所以我们也必须声明好泛型的适用的场景，就要加<strong>泛型约束</strong>。</p>
+<h2 id="泛型怎么用？"><a href="#泛型怎么用？" class="headerlink" title="泛型怎么用？"></a>泛型怎么用？</h2><p>这一部分，就用官方的例子来讲一下。</p>
+<p>下面这个例子，一个函数，声明形参和函数返回值的类型<code>number</code>，那么这种情况下，函数只能接受对应的实参类型的调用。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">identity</span>(<span class="params">arg: <span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用了泛型的函数，长这样</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">identity</span>&lt;<span class="title">T</span>&gt;(<span class="params">arg: T</span>): <span class="title">T</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arg;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = identity(<span class="string">&#x27;Hello&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> b = identity&lt;<span class="built_in">string</span>&gt;(<span class="string">&#x27;world&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a + <span class="string">&#x27; &#x27;</span> + b); <span class="comment">// Hello world</span></span><br></pre></td></tr></table></figure>
+<p>T 可以理解成一个形参变量，那么 <code>identity</code> 函数的 arg 和其返回值类型都是用 T 变量。回到这节内容，我们聊到怎么用泛型，在概念上，其实跟怎么用函数差不多，T 如果是形参，那么调用就会有实参，<code>identity&lt;string&gt;(&#39;world&#39;)</code>用<code>&lt;&gt;</code>标示 T 的类型，是不是有函数方法调用那味了？当你再看一遍，你会发现其实我们不一定要传类型，因为 T 相当于带了默认值的参数，不过这默认值是自动推断的，推断 <code>&#39;Hello&#39;</code> 的类型。</p>
+<h2 id="什么时候该用泛型？"><a href="#什么时候该用泛型？" class="headerlink" title="什么时候该用泛型？"></a>什么时候该用泛型？</h2><p>在大部分的开发场景下，都没必要使用泛型，因为不用泛型也能正常写业务，正常写工具。泛型，更多是附加价值。比方，写个万金油的工具，和单一业务工具，功能上是单一的，但是应用场景更广了，在价值层面上不同。<br>所以我更推荐在公共工具、有输出行为的组件及函数等，个人看法，如果大家有其他等想法，可以在下方评论区留言。</p>
+<p>我们看几个例子，第一个最经典的例子，如果使用react + typescript 进行开发，第一个接触的泛型，很可能是 useState 泛型函数。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> React <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> FunctionComponent: React.FC&lt;&#123;&#125;&gt; = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = React.useState(<span class="number">1</span>); <span class="comment">// 根据上面提及的，在 typescript 中的泛型不一定需要声明类型，它会自动推断，count: number</span></span><br><span class="line">  <span class="comment">// 声明类型</span></span><br><span class="line">  <span class="comment">// const [count, setCount] = React.useState&lt;number&gt;(1);</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> handleClick = (e: React.MouseEvent&lt;HTMLDivElement&gt;): <span class="function"><span class="params">void</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> newCount = count + <span class="number">1</span>;</span><br><span class="line">    setCount(newCount);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &lt;div onClick=&#123;handleClick&#125;&gt;&#123;count&#125;&lt;/div&gt;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> FunctionComponent</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子可以发现，useState 是有输出行为的函数，泛型可以保证 count 和 setCount 的类型校验，我们不用繁琐的声明 count 和 setCount 的类型。看完整个过程，是不是可以抽象理解成，泛型类似“<strong>类型变量</strong>”，useState 把类型当作变量进行使用传递。从这个点，我们再思考一下，如果有变量的概念，是不是会存在逻辑的可能。那么接下来我们介绍有逻辑的泛型工具，用逻辑操纵类型。</p>
+
+        </section>
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 何俊泽 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

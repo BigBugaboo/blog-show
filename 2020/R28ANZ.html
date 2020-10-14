@@ -9,10 +9,8 @@
     <meta name="author" content="何俊泽">
 
 
-    <meta name="subtitle" content="何俊泽无聊的博客">
+    <meta name="subtitle" content="何俊泽满是BUG的博客">
 
-
-    <meta name="description" content="这是个博客">
 
 
     <meta name="keywords" content="HTML, JavaScript, Hexo">
@@ -49,7 +47,7 @@
     
 
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -223,13 +221,13 @@
 <h2 id="2019-11"><a href="#2019-11" class="headerlink" title="2019/11"></a>2019/11</h2><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><blockquote>
 <p>熟悉基本的开发协同后，我开始接敏仪和雅堂分配的需求，比如帮助文档静态搜索优化，邀请有礼等。具体跟 algolia、sitemap、用户体验等有关。</p>
 </blockquote>
-<h3 id="文档维护-帮助文档"><a href="#文档维护-帮助文档" class="headerlink" title="文档维护-帮助文档"></a>文档维护-帮助文档</h3><h4 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h4><p>  在优化帮助文档时，雅堂跟我过了一遍大概的框架及相关点，搜索使用的是 <a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/docsearch</a> 托管式全站搜索，接入了自动化服务，就是第三方使用脚本自动化设置搜索匹配规则。当时提到需要优化的点是细粒度，当时细粒度只到文章的标题，对于帮助型文档，如果无法精确到内容级别的细粒度，搜索是毫无意义的。在接到这个任务后，我去看了 algolia ，它提供两种服务，第一种是 <a href="https://www.algolia.com/" target="_blank" rel="noopener">algolia</a> ，它提供服务器给你，你直接写规则，一种是通过自动化爬虫来生成规则。然后，我们项目是使用第二种 <a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/docsearch</a>，所以没办法直接操作数据库。然后我去 <strong>github</strong> 看了他们项目的源码，发现他们自动匹配，有个地方专门存储自动生成的规则，然后，在该文件夹里，找到了我们公司的网站，然后通过pr形式该了规则。哈哈，这里其实也是对应我们团队的其中一个点，<strong>站在巨人的肩膀</strong>。后来发现 <a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/docsearch</a> 是个网络搜索服务，同时很积极的参与开源社区，提供自己的搜索服务。很多技术文档都是使用 <a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/docsearch</a>，比如 React、Taro、typescript、yarn 等，很难避免这样的问题，如果大家在使用 <a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/docsearch</a> 的话，因为是傻瓜式接入，其原理是跑python脚本获取页面的标签信息，爬取完后，生成网站对应的规则，所以如果是没有只优化的网站，会导致菜单层级混乱、文本内容无法爬取、检索不全等问题。检索不全的问题，有可能是网站导航栏是动态获取导致的，可以通过设置 <a href="https://baike.baidu.com/item/sitemap/6241567?fr=aladdin" target="_blank" rel="noopener">sitemap</a> 解决。而 algolia/docsearch 的具体等配置规则，大家可以上 github 拉 <a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/docsearch</a> 项目中自己等网站配置，然后配置 docker 的 python 环境，然后跑自己配置，进行调整，<a href="https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration/#css-selectors" target="_blank" rel="noopener">algolia配置相关</a>，这个配置文档是 algolia 的，但是 algolia 和 algolia/docsearch 是同一个，只是适用于不同的场景。</p>
+<h3 id="文档维护-帮助文档"><a href="#文档维护-帮助文档" class="headerlink" title="文档维护-帮助文档"></a>文档维护-帮助文档</h3><h4 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h4><p>  在优化帮助文档时，雅堂跟我过了一遍大概的框架及相关点，搜索使用的是 <a target="_blank" rel="noopener" href="https://docsearch.algolia.com/">algolia/docsearch</a> 托管式全站搜索，接入了自动化服务，就是第三方使用脚本自动化设置搜索匹配规则。当时提到需要优化的点是细粒度，当时细粒度只到文章的标题，对于帮助型文档，如果无法精确到内容级别的细粒度，搜索是毫无意义的。在接到这个任务后，我去看了 algolia ，它提供两种服务，第一种是 <a target="_blank" rel="noopener" href="https://www.algolia.com/">algolia</a> ，它提供服务器给你，你直接写规则，一种是通过自动化爬虫来生成规则。然后，我们项目是使用第二种 <a target="_blank" rel="noopener" href="https://docsearch.algolia.com/">algolia/docsearch</a>，所以没办法直接操作数据库。然后我去 <strong>github</strong> 看了他们项目的源码，发现他们自动匹配，有个地方专门存储自动生成的规则，然后，在该文件夹里，找到了我们公司的网站，然后通过pr形式该了规则。哈哈，这里其实也是对应我们团队的其中一个点，<strong>站在巨人的肩膀</strong>。后来发现 <a target="_blank" rel="noopener" href="https://docsearch.algolia.com/">algolia/docsearch</a> 是个网络搜索服务，同时很积极的参与开源社区，提供自己的搜索服务。很多技术文档都是使用 <a target="_blank" rel="noopener" href="https://docsearch.algolia.com/">algolia/docsearch</a>，比如 React、Taro、typescript、yarn 等，很难避免这样的问题，如果大家在使用 <a target="_blank" rel="noopener" href="https://docsearch.algolia.com/">algolia/docsearch</a> 的话，因为是傻瓜式接入，其原理是跑python脚本获取页面的标签信息，爬取完后，生成网站对应的规则，所以如果是没有只优化的网站，会导致菜单层级混乱、文本内容无法爬取、检索不全等问题。检索不全的问题，有可能是网站导航栏是动态获取导致的，可以通过设置 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/sitemap/6241567?fr=aladdin">sitemap</a> 解决。而 algolia/docsearch 的具体等配置规则，大家可以上 github 拉 <a target="_blank" rel="noopener" href="https://docsearch.algolia.com/">algolia/docsearch</a> 项目中自己等网站配置，然后配置 docker 的 python 环境，然后跑自己配置，进行调整，<a target="_blank" rel="noopener" href="https://www.algolia.com/doc/tools/crawler/getting-started/crawler-configuration/#css-selectors">algolia配置相关</a>，这个配置文档是 algolia 的，但是 algolia 和 algolia/docsearch 是同一个，只是适用于不同的场景。</p>
 <h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><ul>
 <li><p>开源意识，开源真正精髓，”对于困惑，你不用再猜测“。</p>
 </li>
 <li><p>思维，想的更广，不要停留在思维定式中，跳出来思考问题。</p>
 <h4 id="tip"><a href="#tip" class="headerlink" title="tip"></a>tip</h4></li>
-<li><p><a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/search</a> 和 algolia 有区别，<a href="https://docsearch.algolia.com/" target="_blank" rel="noopener">algolia/search</a> 更容易接入。</p>
+<li><p><a target="_blank" rel="noopener" href="https://docsearch.algolia.com/">algolia/search</a> 和 algolia 有区别，<a target="_blank" rel="noopener" href="https://docsearch.algolia.com/">algolia/search</a> 更容易接入。</p>
 </li>
 </ul>
 <hr>
@@ -239,7 +237,7 @@
 </li>
 <li><p>积累问题关键点，逐步思考解决方案。</p>
 <h4 id="tip-1"><a href="#tip-1" class="headerlink" title="tip"></a>tip</h4></li>
-<li><p>#是用来指导浏览器动作的，对服务器端完全无用，所以请求会过滤hash，当项目采用hash路由时，需要特别注意，因为开发者往往使用get方式传递参数，在接入第三方服务，并且第三方存在重定向当情况下，是个极大当隐患。比如请求 <a href="https://www.yuque.com/iyum9i#search=get" target="_blank" rel="noopener">https://www.yuque.com/iyum9i#search=get</a> 会变成 <a href="https://www.yuque.com/iyum9i，导致参数丢失。" target="_blank" rel="noopener">https://www.yuque.com/iyum9i，导致参数丢失。</a></p>
+<li><p>#是用来指导浏览器动作的，对服务器端完全无用，所以请求会过滤hash，当项目采用hash路由时，需要特别注意，因为开发者往往使用get方式传递参数，在接入第三方服务，并且第三方存在重定向当情况下，是个极大当隐患。比如请求 <a target="_blank" rel="noopener" href="https://www.yuque.com/iyum9i#search=get">https://www.yuque.com/iyum9i#search=get</a> 会变成 <a target="_blank" rel="noopener" href="https://www.yuque.com/iyum9i，导致参数丢失。">https://www.yuque.com/iyum9i，导致参数丢失。</a></p>
 </li>
 </ul>
 <hr>
@@ -310,7 +308,7 @@
                 
                     <p class="copyright-item">
                         <span>License:</span>
-                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
                     </p>
                 
                 
@@ -344,6 +342,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/blog-show/2020/1WWRN76.html">typescript 工具泛型</a>
             
             
             <a class="next" rel="next" href="/blog-show/2020/1NSVE6N.html">移动商城整UI优化总结</a>

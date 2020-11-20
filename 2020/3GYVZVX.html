@@ -211,11 +211,11 @@
         </header>
 
         <div class="post-content">
-            <h2 id="什么是泛型？"><a href="#什么是泛型？" class="headerlink" title="什么是泛型？"></a>什么是泛型？</h2><blockquote>
+            <blockquote>
 <p>喜欢更多细节和原理的朋友，可以前往官网，阅读文档。<a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/generics.html">官网传送门</a>  <a target="_blank" rel="noopener" href="https://www.tslang.cn/docs/handbook/generics.html">中文版传送门</a></p>
 </blockquote>
 <hr>
-<p>如果是科班出身，对编译型语言有一定了解的话，可以看看这句话，就能初步理解了个大概。<br><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%B3%9B%E5%9E%8B/4475207?fr=aladdin">泛型是程序设计语言的一种特性。允许程序员在强类型程序设计语言中编写代码时定义一些可变部分，那些部分在使用前必须作出指明。</a><strong>这里提及的可变部分必须作出声明，typescript 可以自动推断类型，所以声明不是必须的。</strong></p>
+<h2 id="什么是泛型？"><a href="#什么是泛型？" class="headerlink" title="什么是泛型？"></a>什么是泛型？</h2><p>如果是科班出身，对编译型语言有一定了解的话，可以看看这句话，就能初步理解了个大概。<br><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%B3%9B%E5%9E%8B/4475207?fr=aladdin">泛型是程序设计语言的一种特性。允许程序员在强类型程序设计语言中编写代码时定义一些可变部分，那些部分在使用前必须作出指明。</a><strong>这里提及的可变部分必须作出声明，typescript 可以自动推断类型，所以声明不是必须的。</strong></p>
 <p>然后，我们用通俗一点的语言，来进一步了解 typescript 的泛型，举个例子：<br>我是一个机器人，专门负责把我拿到的钱，变成硬币。我没加泛型之前，我只收漂亮国的钱。后来，我免费了，加入了泛型，可以处理各种不同国家的钱，再返回对应国家的硬币。你可以告诉我，你给我什么钱，你也可以不告诉我，我自己判断。</p>
 <p>就从上面上面例子中，其实可以发现，在没加入泛型之前，为了低容错，会声明某些固定类型，比如，只转漂亮国的钱。当加入泛型后，我们可以让函数变为<strong>纯函数</strong>，依赖参数，用<strong>泛型变量</strong>来定义相关参数的类型，实现类似动态类型的概念，做出行为一致结果,<strong>拿什么钱，转什么钱</strong>。所以泛型更考验开发者的能力，因为在编写代码时，要保证其在定义的泛型场景下，能通过。当然，函数虽然可以转很多国家的钱，可能它不想转冥币，所以我们也必须声明好泛型的适用的场景，就要加<strong>泛型约束</strong>。</p>
 <h2 id="泛型怎么用？"><a href="#泛型怎么用？" class="headerlink" title="泛型怎么用？"></a>泛型怎么用？</h2><p>这一部分，就用官方的例子来讲一下。</p>
@@ -266,6 +266,8 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/blog-show/tags/typescript%E3%80%81%E6%B3%9B%E5%9E%8B/"># typescript、泛型</a>
                     
                         <a href="/blog-show/tags/React/"># React</a>
                     

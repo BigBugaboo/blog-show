@@ -289,6 +289,15 @@
 </ol>
 <p>码字太快太多，难免有误，如有错别字，希望大家指出，感谢！！！<br>从我的总结中有所思考和疑问，可以与我交流，我会积极与大家交流。</p>
 
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"GitHub Application Client ID","clientSecret":"GitHub Application Client Secret","repo":"GitHub repo","owner":"GitHub repo owner","admin":["GitHub repo owner and collaborators, only these guys can initialize github issues"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
         </div>
 
         
